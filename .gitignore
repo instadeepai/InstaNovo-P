@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Type checking
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Checkpoints and data (large files)
+checkpoints/*.pt
+checkpoints/*.ckpt
+data/
+*.ipc
+
+# Logs
+logs/
+lightning_logs/
+tb_logs/
+wandb/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# uv
+uv.lock

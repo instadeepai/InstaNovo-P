@@ -1,0 +1,48 @@
+0:
+  params:
+    - model.head.bias
+    - model.head.weight
+    - model.aa_embed.weight
+  max_transition_epoch: 1
+1:
+  params:
+    - model.decoder.layers.8.*
+  max_transition_epoch: 2
+2:
+  params:
+    - model.decoder.layers.7.*
+    - model.decoder.layers.6.*
+  max_transition_epoch: 3
+3:
+  params:
+    - model.decoder.layers.5.*
+    - model.decoder.layers.4.*
+  max_transition_epoch: 4
+4:
+  params:
+    - model.decoder.layers.3.*
+    - model.decoder.layers.2.*
+  max_transition_epoch: 5
+5:
+  params:
+    - model.decoder.layers.1.*
+    - model.decoder.layers.0.*
+  max_transition_epoch: 7
+6:
+  params:
+    - model.encoder.layers.8.*
+    - model.encoder.layers.7.*
+  max_transition_epoch: 8
+7:
+  params:
+    - model.encoder.layers.6.*
+    - model.encoder.layers.5.*
+    - model.encoder.layers.4.*
+  max_transition_epoch: 9
+8:
+  params:
+    - model.encoder.layers.3.*
+    - model.encoder.layers.2.*
+    - model.encoder.layers.1.*
+    - model.encoder.layers.0.*
+  max_transition_epoch: 10

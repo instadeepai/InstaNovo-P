@@ -1,0 +1,138 @@
+# Spectrum processing options.
+n_peaks: 200 # 150
+min_mz: 50.0
+max_mz: 2500.0
+min_intensity: 0.01
+remove_precursor_tol: 2.0
+max_charge: 10
+precursor_mass_tol: 50 # ppm
+isotope_error_range: [0, 1]
+
+# Model architecture options.
+dim_model: 768
+n_head: 16
+dim_feedforward: 1024
+n_layers: 9
+dim_intensity:
+custom_encoder:
+
+use_depthcharge: False
+enc_type: "instanovo"
+dec_type: "instanovo"
+dec_precursor_sos: False
+
+max_length: 30
+residues:
+  "G": 57.021464
+  "A": 71.037114
+  "S": 87.032028
+  "P": 97.052764
+  "V": 99.068414
+  "T": 101.047670
+  "C": 103.009185
+  "L": 113.084064
+  "I": 113.084064
+  "N": 114.042927
+  "D": 115.026943
+  "Q": 128.058578
+  "K": 128.094963
+  "E": 129.042593
+  "M": 131.040485
+  "H": 137.058912
+  "F": 147.068414
+  "R": 156.101111
+  "Y": 163.063329
+  "W": 186.079313
+  # Modifications
+  "M(+15.99)": 147.035400 # Oxidation
+  "C(+57.02)": 160.030649
+  "N(+.98)": 115.026943
+  "Q(+.98)": 129.042594
+  "S(+79.97)": 166.998028 # Phosphorylation + 79.966
+  "T(+79.97)": 181.01367 # Phosphorylation + 79.966
+  "Y(+79.97)": 243.029329 # Phosphorylation + 79.966
+ptms:
+  "(p)": "(+79.97)" # Phosphorylation
+  "(ox)": "(+15.99)" # Oxidation
+
+# Logging options
+logger:
+n_log: 1
+tb_summarywriter: "./logs/instanovo/instanovo-ft"
+num_sanity_val_steps: 10
+console_logging_steps: 1000
+tensorboard_logging_steps: 200
+progress_bar: False
+
+# Validation options
+predict_batch_size: 2220 # 4096 too large for GPU # 2220 for 2 batches per epoch
+n_beams: 2 # Default 5 - 2 for faster inference
+val_check_interval: 7397 # Default 7397
+# Checkpoint is saved at every val_check_interval
+# At 1,893,826 training samples:
+#   batch size 256 - 7397 for 1 per epoch, 3698  for 2 per epoch # 1849  for 4 per epoch
+#   batch size 64 - 29591 for 1 per epoch, 14795 for 2 per epoch # 7397  for 4 per epoch
+#   batch size 32 - 59182 for 1 per epoch, 29591 for 2 per epoch # 14795 for 4 per epoch
+
+# Data options
+train_from_scratch: False
+train_num_shards: 0 # Number of shards in training set
+use_dvc: False
+train_subset: 1.0 # 1.0
+valid_subset: 0.02 # 0.02 # 0.02: 4437 samples
+save_model: False
+model_save_folder_path: "./checkpoints/instanovo-ft/"
+save_weights_only: False
+resume_checkpoint: "./checkpoints/instanovo.pt"
+# Download from: https://github.com/instadeepai/InstaNovo/releases/download/0.1.4/instanovo.pt
+
+# Early stopping options (for phase transitions)
+# Checks every val_check_interval training steps defined above
+epoch_transitions_only: True # If True, early stopping is not used
+min_delta: 0.002
+patience: 1
+restore_best: False # If True, has to monitor a loss
+
+### Mostly need to change below this line ###
+# Training options
+train_batch_size: 64 # 128 #32
+epochs: 10 # Make sure the epochs match the ones in the schedule below
+grad_accumulation: 1
+gradient_clip_val: 10.0
+learning_rate: 2e-4 #5e-4, 5e-5, 2e-4 is good for training head if using STLRSchedulerEpochBased
+
+# Regularization
+weight_decay: 1e-6 # Default 1e-5
+dropout: 0.1 # Default 0.1
+peak_dropout: 0.0 # Default 0.0
+
+# Fine-tuning options
+fine_tune: True
+schedule: "finetune_schedule_gu_decoder-encoder-v2.yaml"
+optimizer: "Adam"
+scheduler: "STLRSchedulerEpochBased" # "LinearLR" or "CosineAnnealingWarmRestarts" or "STLRScheduler" or "STLRSchedulerEpochBased"
+scheduler_interval: "step" # "step" or "epoch"
+
+# LinearLR options
+# To use LinearLR as warmup, set LinearLR_total_iters to the number of warmup steps
+# After warmup, the learning rate will stay constant at the end factor_factor of the initial learning rate
+LinearLR_start_factor: 1.0 # Cannot be 0.0 because of division by zero
+LinearLR_end_factor: 0.05 #
+# 1570 * 10 * 5 = 78500
+# 14000 # 23550 # 1570 * 15 # 1570 * 5 = 7850
+LinearLR_total_iters: 300000 # 15000
+
+# STLRScheduler options
+# max_lr is set to the learning_rate defined above
+STLR_ratio: 0.03125 # 1/32 x learning_rate
+STLR_cycle_length: 29591 # default 29591
+# 7850 For full epoch length at 256 batch size, full train set # 39250 for 5 epochs
+# 29591 for full epoch at 64 batch size
+STLR_midpoint_fraction: 0.1 #
+# STLRSchedulerEpochs options
+STLR_maxlr_list: [2e-4, 1e-5, 5e-6, 5e-6, 5e-6, 5e-6, 2e-6, 2e-6, 2e-6, 2e-6] # The first value has to match learning_rate
+
+# LoRA
+# If True, will add LoRA to encoder and decoder layers. Still need to specify lora layers in schedule!
+apply_lora: False
+lora_rank: 64
