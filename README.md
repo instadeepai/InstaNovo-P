@@ -53,8 +53,9 @@ This dataset comprises 2.57 million phosphorylated peptide-spectrum matches (PSM
 
 ### Evaluation Datasets
 
-- **FGFR2 Validation:** `[PLACEHOLDER: HuggingFace link TBD]`
-- **Astral Benchmarking:** `[PLACEHOLDER: HuggingFace link TBD]`
+- **21PTM Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD009449](https://huggingface.co/datasets/InstaDeepAI/PXD009449)
+- **FGFR2 Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD062859](https://huggingface.co/datasets/InstaDeepAI/PXD062859)
+- **Astral Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD055983](https://huggingface.co/datasets/InstaDeepAI/PXD055983)
 
 ## Codebase Lineage and Modified Files
 
