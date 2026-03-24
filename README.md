@@ -168,7 +168,7 @@ python -m instanovo.transformer.predict \
 
 Evaluation metrics (amino acid precision/recall, peptide precision/recall, PTM-specific precision/recall) are computed during validation and logged to TensorBoard. The predictions CSV can be used for further downstream analysis.
 
-For benchmarking external models, sequence notation must be normalized before
+For benchmarking particular external models, sequence notation must be normalized before
 scoring. In particular, PrimeNovo-PTM emits phosphorylation in prefix ProForma
 notation (for example, `[UNIMOD:21]S`), while this codebase evaluates phospho
 sites in residue-suffix form (`S[UNIMOD:21]`). Converting PrimeNovo-PTM outputs
