@@ -12,6 +12,25 @@ from instanovo.constants import SpecialTokens
 # import logging
 
 
+def normalize_phospho_ptm(sequence: str) -> str:
+    """Convert phosphorylation PTM notation from prefix to suffix format.
+
+    This is used when benchmarking PrimeNovo-PTM predictions, which encode
+    phosphorylation in prefix form (for example ``[UNIMOD:21]S``). InstaNovo-P's
+    evaluation code expects the residue-first form ``S[UNIMOD:21]`` before any
+    downstream tokenization or residue remapping.
+
+    Args:
+        sequence (str): The peptide sequence with PTM annotations.
+
+    Returns:
+        str: The sequence with normalized phosphorylation PTM notation.
+    """
+    pattern = r"\[UNIMOD:21\]([A-Z])"
+    replacement = r"\1[UNIMOD:21]"
+    return re.sub(pattern, replacement, sequence)
+
+
 class ResidueSet:
     """A class for managing sets of residues.
 
