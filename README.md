@@ -34,7 +34,7 @@ The InstaNovo-P checkpoint is available at:
 - [instanovo-phospho-v1.0.0.ckpt](https://github.com/instadeepai/InstaNovo/releases/download/1.1.2/instanovo-phospho-v1.0.0.ckpt)
 
 For a step-by-step inference tutorial, see the official notebook:
-- [InstaNovo-P.ipynb](https://raw.githubusercontent.com/instadeepai/InstaNovo/refs/heads/main/notebooks/InstaNovo-P.ipynb)
+- [InstaNovo-P.ipynb](https://github.com/instadeepai/InstaNovo/blob/main/notebooks/InstaNovo-P.ipynb)
 
 The notebook demonstrates:
 - Loading the InstaNovo-P checkpoint
