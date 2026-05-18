@@ -6,7 +6,7 @@ readme = "README.md"
 license = {text = "Apache-2.0"}
 requires-python = ">=3.8,<3.11"
 dependencies = [
-  "torch==1.13.1",
+  "torch==2.8.0",
   "pytorch-lightning==1.8.6",
   "finetuning-scheduler==0.3.4",
   "polars==0.19.7",
@@ -19,10 +19,10 @@ dependencies = [
   "pyarrow==15.0.0",
   "seaborn==0.12.0",
   "matplotlib==3.7.2",
-  "scikit-learn==1.1.2",
+  "scikit-learn==1.5.0",
   "tensorboard==2.10.1",
   "tensorboardX==2.5.1",
-  "tqdm==4.65.0",
+  "tqdm==4.66.3",
   "omegaconf==2.2.3",
   "click==8.1.7",
   "numba==0.57.1",
