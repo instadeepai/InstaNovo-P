@@ -5,7 +5,7 @@ InstaNovo-P is a phosphorylation-specific version of the transformer-based [Inst
 **Paper:** [InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics](https://doi.org/10.1101/2025.05.14.654049) (bioRxiv preprint)
 
 > **Important -- Codebase Lineage:**
-> This repository contains a self-contained fork of [InstaNovo v0.1.6](https://pypi.org/project/instanovo/0.1.6/) with substantial modifications for phosphoproteomics fine-tuning. It is **not** compatible with newer InstaNovo releases (>=1.0).
+> This repository contains a self-contained fork of [InstaNovo v0.1.6](https://pypi.org/project/instanovo/0.1.6/) with substantial modifications for phosphoproteomics fine-tuning. Note that, while the codebase is forked from v0.1.6, the base checkpoint used for fine-tuning is taken from the earlier [InstaNovo v0.1.4 release](https://github.com/instadeepai/InstaNovo/releases/tag/0.1.4); the v0.1.6 model weights were never published, so v0.1.4 is the canonical "base InstaNovo model" referenced in the paper. This repository is **not** compatible with newer InstaNovo releases (>=1.0).
 >
 > **For inference only**, use the latest [`instanovo`](https://github.com/instadeepai/InstaNovo) package (>=1.1.2) with the released [InstaNovo-P checkpoint](https://github.com/instadeepai/InstaNovo/releases/download/1.1.2/instanovo-phospho-v1.0.0.ckpt). See the [Quick Start -- Inference](#quick-start----inference) section below.
 >
@@ -49,7 +49,7 @@ The notebook demonstrates:
 The InstaNovo-P training dataset is available on HuggingFace:
 - [InstaDeepAI/InstaNovo-P](https://huggingface.co/datasets/InstaDeepAI/InstaNovo-P)
 
-This dataset comprises 2.57 million phosphorylated peptide-spectrum matches (PSMs) from 29 PRIDE projects, reprocessed with IonBot (filtered at 0.80 localization probability) and split using GraphPart homology partitioning into train/validation/test sets.
+This dataset comprises 2,760,939 phosphorylated peptide-spectrum matches (PSMs) from 29 PRIDE projects, reprocessed with IonBot and filtered at 0.80 localization probability. After homology-based partitioning with GraphPart, 2,691,117 PSMs were retained in a 2,008,923 / 232,641 / 449,553 train/validation/test split.
 
 ### Evaluation Datasets
 
@@ -146,12 +146,12 @@ python -m instanovo.transformer.train \
     --n_workers 8
 ```
 
-The training configuration is defined in `configs/instanovo/instanovo_finetune_phospho.yaml` and uses the gradual unfreezing schedule from `configs/finetune_scheduler/finetune_schedule_gu_decoder-encoder-v2.yaml`.
+The training configuration is defined in `configs/instanovo/instanovo_finetune_phospho.yaml` and uses the gradual unfreezing schedule from `configs/finetune_scheduler/finetune_schedule_gu_encoder-decoder-v2.yaml`.
 
 The fine-tuning proceeds through 10 epochs with encoder-first gradual unfreezing:
 1. **Epochs 0-1:** Head and embedding layers only
-2. **Epochs 1-5:** Decoder layers progressively unfrozen (top to bottom)
-3. **Epochs 5-10:** Encoder layers progressively unfrozen (top to bottom)
+2. **Epochs 1-7:** Encoder layers progressively unfrozen (top to bottom)
+3. **Epochs 7-10:** Decoder layers progressively unfrozen (top to bottom)
 
 ## Evaluation
 
@@ -191,10 +191,10 @@ The key hyperparameters used for fine-tuning InstaNovo-P:
 | Weight decay | 1e-6 |
 | Dropout | 0.1 |
 | Gradient clipping | 10.0 |
-| Unfreezing strategy | Gradual (decoder-first, then encoder) |
+| Unfreezing strategy | Gradual (encoder-first, then decoder) |
 | Validation beams | 2 |
-| Training samples | ~1.89M |
-| Validation subset | 2% (~4,437 samples) |
+| Training samples | 2,008,923 |
+| Validation subset | 2% (~4,653 samples) |
 
 ## Citation
 

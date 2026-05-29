@@ -69,17 +69,17 @@ predict_batch_size: 2220 # 4096 too large for GPU # 2220 for 2 batches per epoch
 n_beams: 2 # Default 5 - 2 for faster inference
 val_check_interval: 7397 # Default 7397
 # Checkpoint is saved at every val_check_interval
-# At 1,893,826 training samples:
-#   batch size 256 - 7397 for 1 per epoch, 3698  for 2 per epoch # 1849  for 4 per epoch
-#   batch size 64 - 29591 for 1 per epoch, 14795 for 2 per epoch # 7397  for 4 per epoch
-#   batch size 32 - 59182 for 1 per epoch, 29591 for 2 per epoch # 14795 for 4 per epoch
+# At 2,008,923 training samples:
+#   batch size 256 - 7847 for 1 per epoch, 3924 for 2 per epoch # 1962 for 4 per epoch
+#   batch size 64 - 31390 for 1 per epoch, 15695 for 2 per epoch # 7848 for 4 per epoch
+#   batch size 32 - 62779 for 1 per epoch, 31390 for 2 per epoch # 15695 for 4 per epoch
 
 # Data options
 train_from_scratch: False
 train_num_shards: 0 # Number of shards in training set
 use_dvc: False
 train_subset: 1.0 # 1.0
-valid_subset: 0.02 # 0.02 # 0.02: 4437 samples
+valid_subset: 0.02 # 0.02 # 0.02: ~4653 samples (of 232,641 validation PSMs)
 save_model: False
 model_save_folder_path: "./checkpoints/instanovo-ft/"
 save_weights_only: False
@@ -108,7 +108,7 @@ peak_dropout: 0.0 # Default 0.0
 
 # Fine-tuning options
 fine_tune: True
-schedule: "finetune_schedule_gu_decoder-encoder-v2.yaml"
+schedule: "finetune_schedule_gu_encoder-decoder-v2.yaml"
 optimizer: "Adam"
 scheduler: "STLRSchedulerEpochBased" # "LinearLR" or "CosineAnnealingWarmRestarts" or "STLRScheduler" or "STLRSchedulerEpochBased"
 scheduler_interval: "step" # "step" or "epoch"
@@ -126,8 +126,10 @@ LinearLR_total_iters: 300000 # 15000
 # max_lr is set to the learning_rate defined above
 STLR_ratio: 0.03125 # 1/32 x learning_rate
 STLR_cycle_length: 29591 # default 29591
-# 7850 For full epoch length at 256 batch size, full train set # 39250 for 5 epochs
-# 29591 for full epoch at 64 batch size
+# Per-epoch step counts at 2,008,923 training samples:
+#   batch size 256 - 7847 steps per epoch
+#   batch size 64 - 31390 steps per epoch
+# (29591 was retained from the original run; ~94% of a full epoch at batch 64.)
 STLR_midpoint_fraction: 0.1 #
 # STLRSchedulerEpochs options
 STLR_maxlr_list: [2e-4, 1e-5, 5e-6, 5e-6, 5e-6, 5e-6, 2e-6, 2e-6, 2e-6, 2e-6] # The first value has to match learning_rate
