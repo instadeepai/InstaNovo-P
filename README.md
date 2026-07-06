@@ -2,7 +2,7 @@
 
 InstaNovo-P is a phosphorylation-specific version of the transformer-based [InstaNovo](https://github.com/instadeepai/InstaNovo) model, fine-tuned on extensive phosphoproteomics datasets. It significantly surpasses existing methods in phosphorylated peptide detection and phosphorylation site localization accuracy across multiple datasets.
 
-**Paper:** [InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics](https://doi.org/10.1101/2025.05.14.654049) (bioRxiv preprint)
+**Paper:** [InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics](https://doi.org/10.1038/s41467-026-75138-x) (Nature Communications, 2026)
 
 > **Important -- Codebase Lineage:**
 > This repository contains a self-contained fork of [InstaNovo v0.1.6](https://pypi.org/project/instanovo/0.1.6/) with substantial modifications for phosphoproteomics fine-tuning. Note that, while the codebase is forked from v0.1.6, the base checkpoint used for fine-tuning is taken from the earlier [InstaNovo v0.1.4 release](https://github.com/instadeepai/InstaNovo/releases/tag/0.1.4); the v0.1.6 model weights were never published, so v0.1.4 is the canonical "base InstaNovo model" referenced in the paper. This repository is **not** compatible with newer InstaNovo releases (>=1.0).
@@ -201,20 +201,19 @@ The key hyperparameters used for fine-tuning InstaNovo-P:
 If you use InstaNovo-P in your research, please cite:
 
 ```bibtex
-@article {Lauridsen2025.05.14.654049,
-  author = {Lauridsen, Jesper and Ramasamy, Pathmanaban and Catzel, Rachel and Canbay, Vahap and Mabona, Amandla and Eloff, Kevin and Fullwood, Paul and Ferguson, Jennifer and Kirketerp-M{\o}ller, Annekatrine and Goldschmidt, Ida Sofie and Claeys, Tine and van Puyenbroeck, Sam and Lopez Carranza, Nicolas and Schoof, Erwin M. and Martens, Lennart and Van Goey, Jeroen and Francavilla, Chiara and Jenkins, Timothy Patrick and Kalogeropoulos, Konstantinos},
-  title = {InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics},
-  elocation-id = {2025.05.14.654049},
-  year = {2025},
-  doi = {10.1101/2025.05.14.654049},
-  publisher = {Cold Spring Harbor Laboratory},
-  URL = {https://www.biorxiv.org/content/early/2025/05/18/2025.05.14.654049},
-  eprint = {https://www.biorxiv.org/content/early/2025/05/18/2025.05.14.654049.full.pdf},
-  journal = {bioRxiv}
+@article{Lauridsen2026InstaNovoP,
+  author = {Lauridsen, Jesper and Canbay, Vahap and Catzel, Rachel and Ramasamy, Pathmanaban and Mabona, Amandla and Eloff, Kevin and Fullwood, Paul and Ferguson, Jennifer and Kirketerp-M{\o}ller, Annekatrine and Goldschmidt, Ida Sofie and Claeys, Tine and van Puyenbroeck, Sam and Lopez Carranza, Nicolas and Schoof, Erwin M. and Martens, Lennart and Van Goey, Jeroen and Francavilla, Chiara and Jenkins, Timothy Patrick and Kalogeropoulos, Konstantinos},
+  title = {InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics},
+  journal = {Nature Communications},
+  year = {2026},
+  volume = {XX},   % TODO: update once assigned by the journal
+  number = {XXXX}, % TODO: article number, update once assigned by the journal
+  doi = {10.1038/s41467-026-75138-x},
+  url = {https://doi.org/10.1038/s41467-026-75138-x}
 }
 ```
 
-> **Note:** This citation refers to the bioRxiv preprint. It will be updated once the peer-reviewed publication is available.
+> **Note:** InstaNovo-P has been accepted at Nature Communications (DOI [10.1038/s41467-026-75138-x](https://doi.org/10.1038/s41467-026-75138-x)). The article is currently at the proofs stage; the `volume` and article `number` placeholders above will be filled in once assigned by the journal.
 
 ## License
 
