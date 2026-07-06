@@ -19,6 +19,7 @@ InstaNovo-P is a phosphorylation-specific version of the transformer-based [Inst
 - [Reproducing the Fine-Tuning](#reproducing-the-fine-tuning)
 - [Evaluation](#evaluation)
 - [Hyperparameters](#hyperparameters)
+- [Code Availability](#code-availability)
 - [Citation](#citation)
 - [License](#license)
 
@@ -56,6 +57,13 @@ This dataset comprises 2,760,939 phosphorylated peptide-spectrum matches (PSMs) 
 - **21PTM Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD009449](https://huggingface.co/datasets/InstaDeepAI/PXD009449)
 - **FGFR2 Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD062859](https://huggingface.co/datasets/InstaDeepAI/PXD062859)
 - **Astral Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD055983](https://huggingface.co/datasets/InstaDeepAI/PXD055983)
+
+### Experimental Validation Data
+
+Mass spectrometry data from the wet-lab validation experiments (targeted proteomics and DIA confirmation of predictions -- not used for model training or benchmarking) are deposited on ProteomeXchange:
+
+- **Targeted proteomics (PRM):** [PXD063292](https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD063292) (also on [PanoramaWeb](https://panoramaweb.org/))
+- **DIA:** [PXD074105](https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD074105)
 
 ## Codebase Lineage and Modified Files
 
@@ -195,6 +203,12 @@ The key hyperparameters used for fine-tuning InstaNovo-P:
 | Validation beams | 2 |
 | Training samples | 2,008,923 |
 | Validation subset | 2% (~4,653 samples) |
+
+## Code Availability
+
+This repository provides the training and fine-tuning code to reproduce the paper. An archived snapshot of the code is available on Zenodo: [zenodo.org/records/20430929](https://zenodo.org/records/20430929).
+
+Inference code and the released InstaNovo-P checkpoint are distributed through the [InstaNovo package and repository](https://github.com/instadeepai/InstaNovo) (see [Quick Start -- Inference](#quick-start----inference)).
 
 ## Citation
 
