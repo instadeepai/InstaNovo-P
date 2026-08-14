@@ -93,7 +93,9 @@ class InstaNovo(nn.Module):
     @classmethod
     def load(cls, path: str) -> nn.Module:
         """Load model from checkpoint."""
-        ckpt = torch.load(path, map_location="cpu")
+        # weights_only=False: checkpoints bundle the model config alongside the
+        # state dict. It is the default on torch<2.6, but stated explicitly here.
+        ckpt = torch.load(path, map_location="cpu", weights_only=False)
 
         config = ckpt["config"]
 

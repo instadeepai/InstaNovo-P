@@ -6,9 +6,15 @@ readme = "README.md"
 license = {text = "Apache-2.0"}
 requires-python = ">=3.8,<3.11"
 dependencies = [
-  "torch==2.8.0",
-  "pytorch-lightning==1.8.6",
-  "finetuning-scheduler==0.3.4",
+  # torch 2.6 flipped the default of `torch.load` to weights_only=True, which
+  # refuses checkpoints holding anything beyond tensors and plain containers
+  # (e.g. an OmegaConf config saved alongside the state dict). Keep torch <2.6;
+  # the load sites also pass weights_only=False explicitly.
+  "torch>=2.0,<2.6",
+  # Lightning 2.0 removed Trainer(auto_select_gpus=...), used in transformer/train.py,
+  # and finetuning-scheduler 0.3.4 requires pytorch-lightning<=1.8.6 anyway.
+  "pytorch-lightning>=1.8.6,<2.0",
+  "finetuning-scheduler>=0.3.4,<0.4",
   "polars==0.19.7",
   "pandas==2.0.3",
   "numpy==1.23.3",
@@ -16,7 +22,9 @@ dependencies = [
   "matchms==0.22.0",
   "spectrum-utils==0.4.1",
   "pyopenms==3.1.0",
-  "pyarrow==15.0.0",
+  # 23.0.1 fixes a use-after-free when reading IPC files (GHSA/CVE), and IPC is
+  # this project's data format. Verified against polars 0.19.7 and numpy 1.23.3.
+  "pyarrow==23.0.1",
   "seaborn==0.12.0",
   "matplotlib==3.7.2",
   "scikit-learn==1.5.0",
@@ -26,7 +34,9 @@ dependencies = [
   "omegaconf==2.2.3",
   "click==8.1.7",
   "numba==0.57.1",
-  "datasets",
+  # Only used for the datasets.Dataset branch in transformer/dataset.py, but was
+  # fully unpinned: it floated to 4.x/5.x depending on the rest of the solve.
+  "datasets<5.0",
   "pyyaml>=6.0",
   "setuptools<81",
 ]

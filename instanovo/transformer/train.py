@@ -475,7 +475,7 @@ def train(
 
     if checkpoint_path is not None:
         logging.info(f"Loading model checkpoint from '{checkpoint_path}'")
-        checkpoint = torch.load(checkpoint_path, map_location="cpu")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
         logging.info(f"Checkpoint keys: {checkpoint.keys()}")
 
         # Reformat the loaded model_state keys
