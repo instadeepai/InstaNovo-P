@@ -12,7 +12,7 @@ dependencies = [
   # refuses checkpoints holding anything beyond tensors and plain containers
   # (e.g. an OmegaConf config saved alongside the state dict). Keep torch <2.6;
   # the load sites also pass weights_only=False explicitly.
-  "torch>=2.0,<2.6",
+  "torch>=2.13.0,<2.14",
   # Lightning 2.0 removed Trainer(auto_select_gpus=...), used in transformer/train.py,
   # and finetuning-scheduler 0.3.4 requires pytorch-lightning<=1.8.6 anyway.
   "pytorch-lightning>=1.8.6,<2.0",
@@ -26,7 +26,7 @@ dependencies = [
   "pyopenms==3.1.0",
   # 23.0.1 fixes a use-after-free when reading IPC files (GHSA/CVE), and IPC is
   # this project's data format. Verified against polars 0.19.7 and numpy 1.23.3.
-  "pyarrow==23.0.1",
+  "pyarrow==25.0.1",
   "seaborn==0.12.0",
   "matplotlib==3.7.2",
   "scikit-learn==1.5.0",
@@ -40,11 +40,11 @@ dependencies = [
   # fully unpinned: it floated to 4.x/5.x depending on the rest of the solve.
   "datasets<5.0",
   "pyyaml>=6.0",
-  "setuptools<81",
+  "setuptools<84",
 ]
 
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=83.0.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
