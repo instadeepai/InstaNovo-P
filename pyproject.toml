@@ -4,7 +4,9 @@ version = "1.0.0"
 description = "InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics"
 readme = "README.md"
 license = {text = "Apache-2.0"}
-requires-python = ">=3.8,<3.11"
+# Matches .python-version and the README. The old >=3.8 floor was never real:
+# torch 2.5 requires >=3.9 and pyarrow 23 requires >=3.10.
+requires-python = ">=3.10,<3.11"
 dependencies = [
   # torch 2.6 flipped the default of `torch.load` to weights_only=True, which
   # refuses checkpoints holding anything beyond tensors and plain containers

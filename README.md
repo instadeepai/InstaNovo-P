@@ -104,10 +104,12 @@ cd instanovo-p
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management with Python 3.10 and pinned dependency versions for reproducibility.
 
+`uv sync` installs the exact versions recorded in the committed `uv.lock`, including
+transitive dependencies, and creates the virtual environment if it does not exist:
+
 ```bash
-uv venv --python 3.10
+uv sync
 source .venv/bin/activate
-uv pip install -e .
 ```
 
 ### 3. Download the Base InstaNovo Checkpoint
