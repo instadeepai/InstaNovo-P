@@ -44,4 +44,5 @@ wandb/
 .ipynb_checkpoints/
 
 # uv
-uv.lock
+# uv.lock is tracked on purpose: it pins the transitive dependency set, which
+# the version specifiers in pyproject.toml cannot do on their own.
