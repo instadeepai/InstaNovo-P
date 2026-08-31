@@ -2,7 +2,7 @@
 
 InstaNovo-P is a phosphorylation-specific version of the transformer-based [InstaNovo](https://github.com/instadeepai/InstaNovo) model, fine-tuned on extensive phosphoproteomics datasets. It significantly surpasses existing methods in phosphorylated peptide detection and phosphorylation site localization accuracy across multiple datasets.
 
-**Paper:** [InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics](https://doi.org/10.1101/2025.05.14.654049) (bioRxiv preprint)
+**Paper:** [InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics](https://www.nature.com/articles/s41467-026-75138-x) (*Nature Communications* **17**, 9277, 2026)
 
 > **Important -- Codebase Lineage:**
 > This repository contains a self-contained fork of [InstaNovo v0.1.6](https://pypi.org/project/instanovo/0.1.6/) with substantial modifications for phosphoproteomics fine-tuning. Note that, while the codebase is forked from v0.1.6, the base checkpoint used for fine-tuning is taken from the earlier [InstaNovo v0.1.4 release](https://github.com/instadeepai/InstaNovo/releases/tag/0.1.4); the v0.1.6 model weights were never published, so v0.1.4 is the canonical "base InstaNovo model" referenced in the paper. This repository is **not** compatible with newer InstaNovo releases (>=1.0).
@@ -19,6 +19,7 @@ InstaNovo-P is a phosphorylation-specific version of the transformer-based [Inst
 - [Reproducing the Fine-Tuning](#reproducing-the-fine-tuning)
 - [Evaluation](#evaluation)
 - [Hyperparameters](#hyperparameters)
+- [Code Availability](#code-availability)
 - [Citation](#citation)
 - [License](#license)
 
@@ -56,6 +57,13 @@ This dataset comprises 2,760,939 phosphorylated peptide-spectrum matches (PSMs) 
 - **21PTM Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD009449](https://huggingface.co/datasets/InstaDeepAI/PXD009449)
 - **FGFR2 Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD062859](https://huggingface.co/datasets/InstaDeepAI/PXD062859)
 - **Astral Validation:** [https://huggingface.co/datasets/InstaDeepAI/PXD055983](https://huggingface.co/datasets/InstaDeepAI/PXD055983)
+
+### Experimental Validation Data
+
+Mass spectrometry data from the wet-lab validation experiments (targeted proteomics and DIA confirmation of predictions -- not used for model training or benchmarking) are deposited on ProteomeXchange:
+
+- **Targeted proteomics (PRM):** [PXD063292](https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD063292) (also on [PanoramaWeb](https://panoramaweb.org/))
+- **DIA:** [PXD074105](https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD074105)
 
 ## Codebase Lineage and Modified Files
 
@@ -198,25 +206,31 @@ The key hyperparameters used for fine-tuning InstaNovo-P:
 | Training samples | 2,008,923 |
 | Validation subset | 2% (~4,653 samples) |
 
+## Code Availability
+
+This repository provides the training and fine-tuning code to reproduce the paper. An archived snapshot of the code is available on Zenodo: [zenodo.org/records/20430929](https://zenodo.org/records/20430929).
+
+Inference code and the released InstaNovo-P checkpoint are distributed through the [InstaNovo package and repository](https://github.com/instadeepai/InstaNovo) (see [Quick Start -- Inference](#quick-start----inference)).
+
 ## Citation
 
 If you use InstaNovo-P in your research, please cite:
 
 ```bibtex
-@article {Lauridsen2025.05.14.654049,
-  author = {Lauridsen, Jesper and Ramasamy, Pathmanaban and Catzel, Rachel and Canbay, Vahap and Mabona, Amandla and Eloff, Kevin and Fullwood, Paul and Ferguson, Jennifer and Kirketerp-M{\o}ller, Annekatrine and Goldschmidt, Ida Sofie and Claeys, Tine and van Puyenbroeck, Sam and Lopez Carranza, Nicolas and Schoof, Erwin M. and Martens, Lennart and Van Goey, Jeroen and Francavilla, Chiara and Jenkins, Timothy Patrick and Kalogeropoulos, Konstantinos},
-  title = {InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics},
-  elocation-id = {2025.05.14.654049},
-  year = {2025},
-  doi = {10.1101/2025.05.14.654049},
-  publisher = {Cold Spring Harbor Laboratory},
-  URL = {https://www.biorxiv.org/content/early/2025/05/18/2025.05.14.654049},
-  eprint = {https://www.biorxiv.org/content/early/2025/05/18/2025.05.14.654049.full.pdf},
-  journal = {bioRxiv}
+@article{Lauridsen2026InstaNovoP,
+  author = {Lauridsen, Jesper and Canbay, Vahap and Catzel, Rachel and Ramasamy, Pathmanaban and Mabona, Amandla and Eloff, Kevin and Fullwood, Paul and Ferguson, Jennifer and Kirketerp-M{\o}ller, Annekatrine and Goldschmidt, Ida Sofie and Claeys, Tine and van Puyenbroeck, Sam and Lopez Carranza, Nicolas and Schoof, Erwin M. and Martens, Lennart and Van Goey, Jeroen and Francavilla, Chiara and Jenkins, Timothy Patrick and Kalogeropoulos, Konstantinos},
+  title = {InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics},
+  journal = {Nature Communications},
+  year = {2026},
+  volume = {17},
+  number = {1},
+  pages = {9277},
+  doi = {10.1038/s41467-026-75138-x},
+  url = {https://doi.org/10.1038/s41467-026-75138-x}
 }
 ```
 
-> **Note:** This citation refers to the bioRxiv preprint. It will be updated once the peer-reviewed publication is available.
+Or in plain text: Lauridsen, J., Canbay, V., Catzel, R. et al. InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics. *Nat Commun* **17**, 9277 (2026). https://doi.org/10.1038/s41467-026-75138-x
 
 ## License
 
