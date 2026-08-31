@@ -2,7 +2,7 @@
 
 InstaNovo-P is a phosphorylation-specific version of the transformer-based [InstaNovo](https://github.com/instadeepai/InstaNovo) model, fine-tuned on extensive phosphoproteomics datasets. It significantly surpasses existing methods in phosphorylated peptide detection and phosphorylation site localization accuracy across multiple datasets.
 
-**Paper:** [InstaNovo-P: A de novo peptide sequencing model for phosphoproteomics](https://doi.org/10.1038/s41467-026-75138-x) (Nature Communications, 2026)
+**Paper:** [InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics](https://www.nature.com/articles/s41467-026-75138-x) (*Nature Communications* **17**, 9277, 2026)
 
 > **Important -- Codebase Lineage:**
 > This repository contains a self-contained fork of [InstaNovo v0.1.6](https://pypi.org/project/instanovo/0.1.6/) with substantial modifications for phosphoproteomics fine-tuning. Note that, while the codebase is forked from v0.1.6, the base checkpoint used for fine-tuning is taken from the earlier [InstaNovo v0.1.4 release](https://github.com/instadeepai/InstaNovo/releases/tag/0.1.4); the v0.1.6 model weights were never published, so v0.1.4 is the canonical "base InstaNovo model" referenced in the paper. This repository is **not** compatible with newer InstaNovo releases (>=1.0).
@@ -220,14 +220,15 @@ If you use InstaNovo-P in your research, please cite:
   title = {InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics},
   journal = {Nature Communications},
   year = {2026},
-  volume = {XX},   % TODO: update once assigned by the journal
-  number = {XXXX}, % TODO: article number, update once assigned by the journal
+  volume = {17},
+  number = {1},
+  pages = {9277},
   doi = {10.1038/s41467-026-75138-x},
   url = {https://doi.org/10.1038/s41467-026-75138-x}
 }
 ```
 
-> **Note:** InstaNovo-P has been accepted at Nature Communications (DOI [10.1038/s41467-026-75138-x](https://doi.org/10.1038/s41467-026-75138-x)). The article is currently at the proofs stage; the `volume` and article `number` placeholders above will be filled in once assigned by the journal.
+Or in plain text: Lauridsen, J., Canbay, V., Catzel, R. et al. InstaNovo-P: a de novo peptide sequencing model for phosphoproteomics. *Nat Commun* **17**, 9277 (2026). https://doi.org/10.1038/s41467-026-75138-x
 
 ## License
 
