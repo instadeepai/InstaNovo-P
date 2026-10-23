@@ -12,7 +12,7 @@ dependencies = [
   # refuses checkpoints holding anything beyond tensors and plain containers
   # (e.g. an OmegaConf config saved alongside the state dict). Keep torch <2.6;
   # the load sites also pass weights_only=False explicitly.
-  "torch>=2.0,<2.6",
+  "torch>=2.0,<2.14",
   # Lightning 2.0 removed Trainer(auto_select_gpus=...), used in transformer/train.py,
   # and finetuning-scheduler 0.3.4 requires pytorch-lightning<=1.8.6 anyway.
   "pytorch-lightning>=1.8.6,<2.0",
@@ -40,7 +40,7 @@ dependencies = [
   # fully unpinned: it floated to 4.x/5.x depending on the rest of the solve.
   "datasets<5.0",
   "pyyaml>=6.0",
-  "setuptools<81",
+  "setuptools<84",
 ]
 
 [build-system]
