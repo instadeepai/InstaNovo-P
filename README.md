@@ -110,7 +110,7 @@ cd instanovo-p
 
 ### 2. Install Dependencies
 
-This project uses [uv](https://docs.astral.sh/uv/) for dependency management with Python 3.10 and pinned dependency versions for reproducibility.
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management with Python 3.11 and pinned dependency versions for reproducibility.
 
 `uv sync` installs the exact versions recorded in the committed `uv.lock`, including
 transitive dependencies, and creates the virtual environment if it does not exist:
