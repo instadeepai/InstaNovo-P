@@ -306,7 +306,8 @@ class Metrics:
                 n += int(abs(mass_a[i] - mass_b[j]) < self.ind_mass_threshold)
                 i += 1
                 j += 1
-            elif cum_mass_a[i] > cum_mass_b[j]:
+            elif cum_mass_b[j] > cum_mass_a[i]:
+                # Advance the sequence whose prefix mass is behind, so the two can realign.
                 i += 1
             else:
                 j += 1
@@ -338,7 +339,8 @@ class Metrics:
                             n_ptm[ptm] += 1
                 i += 1
                 j += 1
-            elif cum_mass_a[i] > cum_mass_b[j]:
+            elif cum_mass_b[j] > cum_mass_a[i]:
+                # Advance the sequence whose prefix mass is behind, so the two can realign.
                 i += 1
             else:
                 j += 1
